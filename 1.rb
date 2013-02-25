@@ -5,21 +5,21 @@ def clean_gemfile
 end
 
 def add_gems
-  gem "rails", "~> 3.2.8"
+  gem "rails", "~> 3.2.12"
 
   gem_group :development do
-    gem "guard-rspec", "~> 1.2.1"
-    gem "guard-livereload"
+    gem "guard-rspec", "~> 2.4.1"
+    gem "guard-livereload", "~> 1.1.3"
     gem "quiet_assets"
     gem "thin"
   end
 
   gem_group :development, :test do
-    gem "rspec-rails", "~> 2.11"
+    gem "rspec-rails", "~> 2.13"
   end
 
   gem_group :test do
-    gem "factory_girl_rails", "~> 4.0.0"
+    gem "factory_girl_rails", "~> 4.2.1"
     gem "ruby_gntp"
   end
 
@@ -27,7 +27,6 @@ def add_gems
     gem "sass-rails",   "~> 3.2.3"
     gem "coffee-rails", "~> 3.2.1"
     gem "uglifier", ">= 1.0.3"
-    gem "bootstrap-sass", "~> 2.0.4"
   end
   gem "jquery-rails"
 end
@@ -61,14 +60,7 @@ RUBY
   end
 end
 
-def clean_application_css_and_add_bootstrap
-  run "rm app/assets/stylesheets/application.css"
-  run "touch app/assets/stylesheets/application.css.scss"
-  append_file "app/assets/stylesheets/application.css.scss", '@import "bootstrap";'
-end
-
 clean_gemfile
 add_gems
 remove_uneccessary_files_and_folders
 configure_rspec
-clean_application_css_and_add_bootstrap
